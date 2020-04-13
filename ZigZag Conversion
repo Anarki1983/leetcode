@@ -1,0 +1,39 @@
+import "strings"
+
+func convert(s string, numRows int) string {
+    if numRows == 1 {
+	    return s
+    }
+    if len(s) == 0 {
+	    return ""
+    }
+    
+    strSlice := strings.Split(s, "")
+    m := make(map[int]string)
+    
+    // save to map[row]string
+    r := 0
+    goUp := false
+    for _, chr := range strSlice {
+        // fmt.Printf("%d. %s\n", r, chr)
+        m[r] += chr
+        if !goUp {
+            r++    
+        } else {
+            r--
+        }
+
+	    if r == numRows-1 || r == 0 {
+             goUp = !goUp
+	    }
+    }
+    
+    ret := ""
+    for i:=0; i<numRows; i++ {
+        if chr, ok := m[i]; ok {
+             ret += chr
+        }
+    }
+
+    return ret
+}

@@ -1,0 +1,78 @@
+package main
+
+import (
+	"fmt"
+)
+
+// Definition for singly-linked list.
+type ListNode struct {
+     Val int
+     Next *ListNode
+}
+
+func main() {
+    head := createList(1, 5)
+    printList(head)
+       
+    head = removeNthFromEnd(head, 5)
+    printList(head)
+}
+
+func createList(from, to int) *ListNode {
+    head := &ListNode{Val: from}
+
+    node := head
+    for c := from + 1; c<=to; c++{
+	      node.Next = &ListNode{Val: c}
+	      node = node.Next
+    }
+
+    return head
+}
+
+func printList(node *ListNode) {
+    if node == nil {
+	      return
+    }
+
+    fmt.Printf("%d", node.Val)
+
+    for node.Next != nil {
+        fmt.Printf(" -> ")
+        node = node.Next
+        fmt.Printf("%d", node.Val)
+    }
+
+    fmt.Println("")
+}
+
+func removeNthFromEnd(head *ListNode, n int) *ListNode {
+    if head == nil {
+        return nil
+    }
+
+    node1 := head 
+    node2 := head
+
+    for i:=0; i<n; i++ {
+        node2 = node2.Next
+    }
+
+    // nth node = head
+    if node2 == nil {
+	      return head.Next
+    }
+
+    for node2 != nil {
+        if node2.Next == nil {
+            // handle remove
+            node1.Next = node1.Next.Next
+            break
+	      }
+	
+	      node1 = node1.Next
+	      node2 = node2.Next
+    }
+
+    return head
+}

@@ -1,0 +1,87 @@
+Runtime: 8 ms, faster than 88.22% of Go online submissions for Add Two Numbers.
+Memory Usage: 4.7 MB, less than 87.81% of Go online submissions for Add Two Numbers.
+
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+// Definition for singly-linked list.
+type ListNode struct {
+     Val int
+     Next *ListNode
+}
+
+func main() {
+    list1 := createList([]int{5})
+    printList(list1)
+    list2 := createList([]int{5,1,3})
+    printList(list2)
+       
+    head := addTwoNumbers(list1, list2)
+    printList(head)
+}
+
+func createList(numbers []int) *ListNode {
+    head := &ListNode{Val: numbers[0]}
+
+    node := head
+    for i:=1; i<len(numbers); i++{
+        node.Next = &ListNode{Val: numbers[i]}
+        node = node.Next
+    }
+
+    return head
+}
+
+func printList(node *ListNode) {
+    if node == nil {
+	      return
+    }
+
+    fmt.Printf("%d", node.Val)
+
+    for node.Next != nil {
+        fmt.Printf(" -> ")
+        node = node.Next
+        fmt.Printf("%d", node.Val)
+    }
+
+    fmt.Println("")
+}
+
+func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+    head := l1
+    carry := 0
+
+    for l1 != nil {
+        l1.Val += carry
+        carry = 0
+
+        if l2 != nil {
+            l1.Val += l2.Val
+            l2 = l2.Next
+        }
+
+        if l1.Val >= 10 {
+            l1.Val -= 10
+            carry = 1
+        }
+
+        if l1.Next == nil && carry == 1 {
+            l1.Next = &ListNode{Val:1}
+            carry = 0
+        }
+
+        if l1.Next == nil && l2 != nil {
+            l1.Next = l2
+            break
+        }
+
+        l1 = l1.Next
+    }
+
+    return head
+}

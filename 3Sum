@@ -1,0 +1,73 @@
+Runtime: 1232 ms, faster than 11.62% of Go online submissions for 3Sum.
+Memory Usage: 19.7 MB, less than 100.00% of Go online submissions for 3Sum.
+
+func threeSum(nums []int) [][]int {
+    m := make(map[string][]int)
+    
+    // handle zeros
+    var zero []int
+    for i:=0; i<len(nums); i++ {
+        if nums[i] == 0 {
+            zero = append(zero, i)
+        }
+    }
+
+    if len(zero) >= 3 {
+        m["000"] = []int{0,0,0}
+        // cut from nums
+        for i:=0; i<3; i++ {
+            nums = append(nums[:zero[i]], nums[zero[i]:]...)
+        }
+    }
+    
+    for i:=0; i<len(nums)-1; i++ {
+        numMap := make(map[int][]int)
+        for j, n := range nums[i+1:] {
+            numMap[n] = append(numMap[n], j)
+        }
+
+        sets := fetchThreeSumSets(numMap, -nums[i])
+        if len(sets) > 0 {
+	          for _, set := range sets {
+	              sort.Slice(set, func(i, j int) bool {
+                    return set[i] < set[j]
+                })
+	        
+                m[fmt.Sprintf("%d%d%d", set[0], set[1], set[2])] = set
+            }
+        }
+    }
+
+    var ret [][]int
+    for _, v := range m {
+	    ret = append(ret, v)
+    }
+
+    return ret
+}
+
+func fetchThreeSumSets(numMap map[int][]int, target int) [][]int {
+    var ret [][]int
+    for num, i := range numMap {
+        j, ok := numMap[target - num]
+        if ok {
+            if i[0] != j[0] {
+                if len(j) == 1 {
+                    delete(numMap, target - num)
+                } else if len(j) > 1 {
+                    j = j[1:]
+                }         
+                ret = append(ret, []int{num, target - num, -target})
+	          } else if i[0] == j[0] && len(j) >= 2 {
+	              if len(j) == 2 {
+                    delete(numMap, target - num)
+                } else if len(j) > 2 {
+                    j = j[2:]
+                }
+                ret = append(ret, []int{num, target - num, -target})
+	          }
+        }
+    }
+    
+    return ret
+}

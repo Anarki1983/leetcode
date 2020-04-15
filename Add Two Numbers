@@ -1,5 +1,5 @@
-Runtime: 8 ms, faster than 88.22% of Go online submissions for Add Two Numbers.
-Memory Usage: 4.7 MB, less than 87.81% of Go online submissions for Add Two Numbers.
+// Runtime: 8 ms, faster than 88.22% of Go online submissions for Add Two Numbers.
+// Memory Usage: 4.7 MB, less than 87.81% of Go online submissions for Add Two Numbers.
 
 package main
 

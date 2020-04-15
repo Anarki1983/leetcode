@@ -1,0 +1,27 @@
+// Runtime: 8 ms, faster than 35.15% of Go online submissions for 3Sum Closest.
+// Memory Usage: 2.7 MB, less than 100.00% of Go online submissions for 3Sum Closest.
+
+import "math"
+
+func threeSumClosest(nums []int, target int) int {
+    l := len(nums)
+
+    closestSum := math.MaxInt32
+    offset := math.MaxInt32
+    for i:=0; i<l-2; i++ {
+        for j:=i+1; j<l-1; j++ {
+            for k:=j+1; k<l; k++ {
+                if offset > int(math.Abs(float64(nums[i] + nums[j] + nums[k] - target))) {
+                    closestSum = nums[i] + nums[j] + nums[k]
+		                offset = int(math.Abs(float64(nums[i] + nums[j] + nums[k] - target)))
+
+                    if closestSum == target {
+                        return closestSum
+                    }
+                }
+            }
+        }
+    }
+
+    return closestSum
+}

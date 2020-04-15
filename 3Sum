@@ -1,5 +1,5 @@
-Runtime: 1204 ms, faster than 11.88% of Go online submissions for 3Sum.
-Memory Usage: 18.3 MB, less than 100.00% of Go online submissions for 3Sum.
+// Runtime: 1204 ms, faster than 11.88% of Go online submissions for 3Sum.
+// Memory Usage: 18.3 MB, less than 100.00% of Go online submissions for 3Sum.
 
 func threeSum(nums []int) [][]int {
     m := make(map[string][]int)

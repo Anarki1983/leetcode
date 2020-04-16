@@ -1,0 +1,23 @@
+// Runtime: 4 ms, faster than 86.52% of Go online submissions for Search Insert Position.
+// Memory Usage: 3.1 MB, less than 33.33% of Go online submissions for Search Insert Position.
+
+func searchInsert(nums []int, target int) int {
+    start := 0
+	  end := len(nums) - 1
+ 
+	  for end >= start {
+		    middle := (end + start) / 2
+        
+		    if nums[middle] == target {
+			      return middle
+		    } else {
+			      if target > nums[middle] {
+				        start = middle + 1
+			      } else {
+				        end = middle - 1
+			      }
+		    }
+	  }
+ 
+	  return start
+}

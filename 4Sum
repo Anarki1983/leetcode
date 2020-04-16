@@ -1,0 +1,29 @@
+// Runtime: 140 ms, faster than 27.60% of Go online submissions for 4Sum.
+// Memory Usage: 3 MB, less than 100.00% of Go online submissions for 4Sum.
+
+func fourSum(nums []int, target int) [][]int {
+    l := len(nums)
+    sort.Slice(nums, func(i, j int) bool {
+        return nums[i] < nums[j]
+    })
+
+    m := make(map[string][]int)
+    for i:=0; i<l-3; i++ {
+        for j:=i+1; j<l-2; j++ {
+            for k:=j+1; k<l-1; k++ {
+	              for x:=k+1; x<l; x++ {
+                    if nums[i] + nums[j] + nums[k] + nums[x] == target {
+                        m[fmt.Sprintf("%d%d%d%d", nums[i], nums[j], nums[k], nums[x])] = []int{nums[i], nums[j], nums[k], nums[x]}
+                    }
+                }
+            }
+        }
+    }
+
+    var ret [][]int
+    for _, v := range m {
+        ret = append(ret, v)
+    }
+
+    return ret
+}

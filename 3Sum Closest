@@ -13,7 +13,7 @@ func threeSumClosest(nums []int, target int) int {
             for k:=j+1; k<l; k++ {
                 if offset > int(math.Abs(float64(nums[i] + nums[j] + nums[k] - target))) {
                     closestSum = nums[i] + nums[j] + nums[k]
-		                offset = int(math.Abs(float64(nums[i] + nums[j] + nums[k] - target)))
+		    offset = int(math.Abs(float64(nums[i] + nums[j] + nums[k] - target)))
 
                     if closestSum == target {
                         return closestSum

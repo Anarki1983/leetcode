@@ -3,21 +3,21 @@
 
 func searchInsert(nums []int, target int) int {
     start := 0
-	  end := len(nums) - 1
+    end := len(nums) - 1
  
-	  for end >= start {
-		    middle := (end + start) / 2
-        
-		    if nums[middle] == target {
-			      return middle
-		    } else {
-			      if target > nums[middle] {
-				        start = middle + 1
-			      } else {
-				        end = middle - 1
-			      }
-		    }
-	  }
+    for end >= start {
+        middle := (end + start) / 2
+
+        if nums[middle] == target {
+            return middle
+        } else {
+            if target > nums[middle] {
+                start = middle + 1
+            } else {
+                end = middle - 1
+            }
+        }
+    }
  
-	  return start
+    return start
 }

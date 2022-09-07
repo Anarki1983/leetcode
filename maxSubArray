@@ -7,8 +7,8 @@ func maxSubArray(nums []int) int {
     switch l {
         case 0:
             return 0
-    case 1:
-        return nums[0]
+        case 1:
+            return nums[0]
     }
     
     dp[0] = nums[0]

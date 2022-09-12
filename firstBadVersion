@@ -27,7 +27,7 @@ func firstBadVersion(n int) int {
     lo := 1
     hi := n
     mi := (lo + hi) / 2
-    for lo <= mi {
+    for lo <= hi {
         if isBadVersion(mi) {
             if mi == 1 || !isBadVersion(mi-1) {
                 return mi

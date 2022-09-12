@@ -29,3 +29,23 @@ func deleteDuplicates(head *ListNode) *ListNode {
     
     return head
 }
+
+func deleteDuplicates2(head *ListNode) *ListNode {
+    curr := head
+    for curr != nil {
+        // move next untail curr != next
+        tmp := curr.Next
+        for tmp != nil {
+            if curr.Val != tmp.Val {
+                break
+            } 
+            
+            tmp = tmp.Next
+        }
+        
+        curr.Next = tmp
+        curr = curr.Next
+    }
+    
+    return head
+}

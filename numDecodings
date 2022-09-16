@@ -1,0 +1,52 @@
+// can't use recursive to solve this
+// last input "111111111111111111111111111111111111111111111" reach max call stack
+
+var decodeMap map[string]bool
+var wayMap map[string]bool
+
+func numDecodings(s string) int {
+	decodeMap = make(map[string]bool)
+	for i := 1; i <= 26; i++ {
+		decodeMap[fmt.Sprintf("%d", i)] = true
+	}
+
+	wayMap = make(map[string]bool)
+
+	decode(s, "")
+
+	return len(wayMap)
+}
+
+func decode(s string, key string) {
+	if len(s) == 0 {
+		wayMap[key] = true
+		return
+	}
+
+	code := fmt.Sprintf("%s", s[:1])
+	if _, ok := decodeMap[code]; ok {
+		newkey := key
+		if len(newkey) > 0 {
+			newkey = key + "_"
+		}
+		newkey += code
+		if len(s) >= 1 {
+			decode(s[1:], newkey)
+		}
+	}
+
+	if len(s) < 2 {
+		return
+	}
+	code = fmt.Sprintf("%s", s[:2])
+	if _, ok := decodeMap[code]; ok {
+		newkey := key
+		if len(newkey) > 0 {
+			newkey = key + "_"
+		}
+		newkey += code
+		if len(s) >= 2 {
+			decode(s[2:], newkey)
+		}
+	}
+}

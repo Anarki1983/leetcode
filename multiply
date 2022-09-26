@@ -1,0 +1,21 @@
+func multiply(num1 string, num2 string) string {
+    // split num1, num2 to []string
+    // then convert to []int
+    // 直式乘法
+    //   12   111
+    //    3    33
+    // ----  ----
+    //   36   333
+    //       333 
+    //       ----
+    //       3663
+    
+    // 乘積大於10 餘數 = %10, 商 = carry = /10
+    // 建立個位數的乘積 []int
+    // 建立十位數的乘積 []int, 個位數補 0
+    // 建立百位數的乘積 []int, 十位數, 個位數補 0
+    // ...
+    // 從個位數開始加總上述 []int, reverse 之後 sum 會簡單一些, 注意carry
+    
+    // 將 sum []int, convert to []string, 再 strings.Join
+}

@@ -1,0 +1,29 @@
+// Input
+// "2-4A0r7-4k"
+// 4
+// Output
+// "2-4A0R-74K"
+// Expected
+// "24A0-R74K", 題目有錯, 他說第一組可以不用補足
+
+func licenseKeyFormatting(s string, k int) string {
+    // split s into []string by - 
+    // leading letter - ? assume not
+    // merge [1:]string
+    // cutting string every len k, concate to result with leading -
+    
+    strs := strings.Split(s, "-")
+    merge := strings.ToUpper(strings.Join(strs[1:], ""))
+    
+    res := strs[0]
+    
+    for len(merge) > 0 {
+        if k > len(merge) {
+            k = len(merge)
+        }
+        res += "-" + merge[:k]
+        merge = merge[k:]
+    }
+    
+    return res
+}

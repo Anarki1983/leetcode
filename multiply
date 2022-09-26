@@ -1,4 +1,5 @@
 func multiply(num1 string, num2 string) string {
+    // TODO
     // split num1, num2 to []string
     // then convert to []int
     // 直式乘法

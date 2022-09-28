@@ -1,3 +1,6 @@
+// Runtime: 35 ms, faster than 87.04% of Go online submissions for Teemo Attacking.
+// Memory Usage: 6.6 MB, less than 96.30% of Go online submissions for Teemo Attacking.
+
 func findPoisonedDuration(timeSeries []int, duration int) int {
     // method 1
     // [1,4], d=2, 1,2,4,5

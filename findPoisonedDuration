@@ -1,0 +1,29 @@
+func findPoisonedDuration(timeSeries []int, duration int) int {
+    // method 1
+    // [1,4], d=2, 1,2,4,5
+    // [1,2], d=2, 1,2,2,3
+    // remove duplicate key
+    // create map for t
+    
+    // method 2
+    // total += duration or diff
+    // max = ts + d - 1
+    
+    if len(timeSeries) == 0 {
+        return 0
+    }
+    
+    total := 0
+    max := -1
+    for _, ts := range timeSeries {
+        if ts > max {
+            total += duration
+        } else {
+            total += ts + duration - 1 - max
+        }
+        
+        max = ts + duration - 1
+    }
+    
+    return total
+}

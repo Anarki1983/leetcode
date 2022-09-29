@@ -1,0 +1,45 @@
+// two pointer solution
+
+func threeSum(nums []int) [][]int {
+    // sort nums
+    
+    // keep nums[i], find sum of indexes of -nums[i] 
+    // (i, j, k), i = 0, j = i+1, k = len(nums)-1
+    // if fetched save triplets to map, remove duplicate triplets
+    
+    sort.Slice(nums, func(i, j int) bool {
+        return nums[i] < nums[j]
+    })
+    
+    m := make(map[string][]int)
+    
+    for i:=0; i<len(nums)-2; i++ {
+        j:=i+1
+        k:=len(nums)-1
+        
+        v := -nums[i]
+        
+        for j < k {
+            sum := nums[j] + nums[k]
+            if sum == v {
+                m[fmt.Sprintf("%d_%d_%d", nums[i], nums[j], nums[k])] = []int{nums[i], nums[j], nums[k]}
+                // move two pointers
+                j++
+                k--
+            } else if sum > v {
+                // move k to left
+                k--
+            } else if sum < v {
+                // move j to right
+                j++
+            }
+        }
+    }
+    
+    ret := make([][]int, 0, len(m))
+    for _, v := range m {
+        ret = append(ret, v)
+    }
+    
+    return ret
+}

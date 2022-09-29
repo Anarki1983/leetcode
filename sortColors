@@ -1,0 +1,24 @@
+func sortColors(nums []int)  {
+    // pointers i, i0, i2
+    // i = 0, i0 = 0, i2 = len(nums) - 1
+    
+    // for i <= i2
+    // if i == 0, swap(i0, i), i++, i0++
+    // if i == 2, swap(i2, i), i++, i2--, i--(可能把2換過來了, 要重新再來)
+    
+    i := 0
+    i0 := 0
+    i2 := len(nums) -1
+    
+    for i <= i2 {
+        if nums[i] == 0 {
+            nums[i], nums[i0] = nums[i0], nums[i]
+            i0++
+        } else if nums[i] == 2 {
+            nums[i], nums[i2] = nums[i2], nums[i]
+            i--
+            i2--
+        }
+        i++
+    }
+}

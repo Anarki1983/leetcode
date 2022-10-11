@@ -1,0 +1,75 @@
+func isValidSudoku(board [][]byte) bool {
+    if len(board) % 3 != 0 {
+        return false
+    }
+    
+    if len(board[0]) % 3 != 0 {
+        return false
+    }
+    
+    // check row
+    for i:=0; i<len(board); i++ {
+        digMap := make(map[byte]bool)
+        for j:=0; j<len(board[i]); j++ {
+            dig := board[i][j]
+            if dig == '.' {
+                continue
+            }
+            
+            if _, ok := digMap[dig]; ok {
+                return false
+            } else {
+                digMap[dig] = true
+            }
+        }
+    }
+    
+    // check col
+    for i:=0; i<len(board); i++ {
+        digMap := make(map[byte]bool)
+        for j:=0; j<len(board[i]); j++ {
+            dig := board[j][i]
+            if dig == '.' {
+                continue
+            }
+            
+            if _, ok := digMap[dig]; ok {
+                return false
+            } else {
+                digMap[dig] = true
+            }
+        }
+    }
+    
+    // check box
+    for i:=0; i<len(board); i+=3 {
+        for j:=0; j<len(board[i]); j+=3 {
+            if !checkBox(board, i, j) {
+                return false
+            }
+        }
+    }
+    
+    return true
+}
+
+func checkBox(board [][]byte, n, m int) bool {
+    digMap := make(map[byte]bool)
+    
+    for i:=n; i<n+3; i++ {
+        for j:=m; j<m+3; j++ {
+            dig := board[i][j]
+            if dig == '.' {
+                continue
+            }
+            
+            if _, ok := digMap[dig]; ok {
+                return false
+            } else {
+                digMap[dig] = true
+            }
+        }
+    }
+    
+    return true
+}

@@ -1,0 +1,40 @@
+//Runtime: 21 ms, faster than 61.38% of Go online submissions for Set Matrix Zeroes.
+//Memory Usage: 6.6 MB, less than 51.06% of Go online submissions for Set Matrix Zeroes.
+
+func setZeroes(matrix [][]int) {
+    rowMap := make(map[int]bool)
+    colMap := make(map[int]bool)
+    
+    for i:=0; i<len(matrix); i++ {
+        for j:=0; j<len(matrix[i]); j++ {
+            if matrix[i][j] == 0 {
+                rowMap[i] = true
+                colMap[j] = true
+            }
+        }
+    }
+    
+    for r, _ := range rowMap {
+        for i:=0; i<len(matrix[0]); i++ {
+            matrix[r][i] = 0
+        }
+    }
+    printMatrix("replace row", matrix)
+    
+    for c, _ := range colMap {
+        for j:=0; j<len(matrix); j++ {
+            matrix[j][c] = 0
+        }
+    }
+    printMatrix("replace col", matrix)
+}
+
+func printMatrix(title string, matrix [][]int) {
+    fmt.Printf("----%s----\n", title)
+    for i:=0; i<len(matrix); i++ {
+        for j:=0; j<len(matrix[i]); j++ {
+            fmt.Printf("%d, ", matrix[i][j])
+        }
+        fmt.Printf("\n")
+    } 
+}

@@ -1,10 +1,15 @@
+package leetcode
+
+// time complexity: O(m*n)
+// space complexity: O(m*n)
+
 func uniquePaths(m int, n int) int {
-    	// init dp
-	// 1 1 1 1 1 1 
-    	// 1 0 0 0 0 0
-    	// 1 0 0 0 0 0
-    	// 1 0 0 0 0 0
-    
+	// init dp
+	// 1 1 1 1 1 1
+	// 1 0 0 0 0 0
+	// 1 0 0 0 0 0
+	// 1 0 0 0 0 0
+
 	dp := make([][]int, m, m)
 	for i := 0; i < m; i++ {
 		dp[i] = make([]int, n, n)
@@ -21,6 +26,6 @@ func uniquePaths(m int, n int) int {
 			dp[i][j] = dp[i-1][j] + dp[i][j-1]
 		}
 	}
-    
-    	return dp[m-1][n-1]
+
+	return dp[m-1][n-1]
 }

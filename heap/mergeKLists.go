@@ -2,6 +2,9 @@ package leetcode
 
 import "container/heap"
 
+// time complexity: O(N+KlogK)
+// space complexity: O(K)
+
 /**
  * Definition for singly-linked list.
  * type ListNode struct {

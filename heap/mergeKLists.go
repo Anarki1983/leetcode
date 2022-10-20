@@ -17,7 +17,7 @@ func mergeKLists(lists []*ListNode) *ListNode {
 		return nil
 	}
 
-	h := &Heap{}
+	h := &MergeKListsHeap{}
 	for i := 0; i < len(lists); i++ {
 		if lists[i] != nil {
 			heap.Push(h, lists[i])
@@ -48,17 +48,17 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	return head
 }
 
-type Heap []*ListNode
+type MergeKListsHeap []*ListNode
 
-func (h Heap) Len() int           { return len(h) }
-func (h Heap) Less(i, j int) bool { return h[i].Val < h[j].Val }
-func (h Heap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h MergeKListsHeap) Len() int           { return len(h) }
+func (h MergeKListsHeap) Less(i, j int) bool { return h[i].Val < h[j].Val }
+func (h MergeKListsHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 
-func (h *Heap) Push(x interface{}) {
+func (h *MergeKListsHeap) Push(x interface{}) {
 	*h = append(*h, x.(*ListNode))
 }
 
-func (h *Heap) Pop() interface{} {
+func (h *MergeKListsHeap) Pop() interface{} {
 	old := *h
 	n := len(old)
 	x := old[n-1]

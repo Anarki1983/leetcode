@@ -28,8 +28,8 @@ func swapMethod(nums []int) int {
 // Time Complexity: O(N)
 // Space Complexity: O(1)
 func twoPointerMethod(nums []int) int {
-	fast := nums[0]
-	slow := 0
+	fast := nums[nums[0]]
+	slow := nums[0]
 
 	// phase 1, find intersect of two pointer
 	for fast != slow {

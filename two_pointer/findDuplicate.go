@@ -37,7 +37,7 @@ func twoPointerMethod(nums []int) int {
 		slow = nums[slow]       // slow = slow.Next
 	}
 
-	// phase2, use two slow pointer to find the "entrance" of the cycle
+	// phase 2, use two slow pointer to find the "entrance" of the cycle
 	slow2 := nums[0]
 	for slow != slow2 {
 		slow = nums[slow]

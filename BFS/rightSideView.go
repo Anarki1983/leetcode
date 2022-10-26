@@ -19,14 +19,14 @@ func rightSideView(root *TreeNode) []int {
 		return []int{}
 	}
 
-	leftView := make([]int, 0, 0)
+	rightView := make([]int, 0, 0)
 
 	queue := []*TreeNode{root}
 
 	for len(queue) > 0 {
 		sz := len(queue)
 
-		leftView = append(leftView, queue[0].Val)
+		rightView = append(rightView, queue[0].Val)
 		for i := 0; i < sz; i++ {
 			node := queue[0]
 			queue = queue[1:]
@@ -41,5 +41,5 @@ func rightSideView(root *TreeNode) []int {
 		}
 	}
 
-	return leftView
+	return rightView
 }
